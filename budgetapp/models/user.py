@@ -66,7 +66,7 @@ class User(Base):
 # ............................................................................ #
 class AccessToken(Base):
 
-	__tablename__ = 'user_access_token'
+	__tablename__ = 'access_token'
 
 	user_id = Column(Integer, ForeignKey("users.id"))
 	user = relationship("User", back_populates="banking")
