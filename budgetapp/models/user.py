@@ -70,3 +70,11 @@ class AccessToken(Base):
 
 	user_id = Column(Integer, ForeignKey("users.id"))
 	user = relationship("User", back_populates="banking")
+	_access_token = Column(Text, nullable = False)
+
+	def __init__(self, access_token):
+		self._access_token = access_token
+
+	@property
+	def access_token(self):
+		return self._access_token
