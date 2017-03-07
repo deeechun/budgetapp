@@ -40,7 +40,7 @@ class User(Base):
 									bcrypt.gensalt())
 		self._hashed_password = hashed_password.decode('utf8')
 
-	def check_password_hash(self, password):
+	def check_password(self, password):
 		"""
 		Checks against the set password hash and verify it matches. If there is
 		no password hash set for the instance, there will be no verification
@@ -70,7 +70,7 @@ class AccessToken(Base):
 
 	user_id = Column(Integer, ForeignKey("users.id"))
 	user = relationship("User", back_populates="banking")
-	_access_token = Column(Text, nullable = False)
+	_access_token = Column(Text, primary_key = True, nullable = False)
 
 	def __init__(self, access_token):
 		self._access_token = access_token
