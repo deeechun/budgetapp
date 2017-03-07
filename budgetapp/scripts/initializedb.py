@@ -16,7 +16,7 @@ from ..models import (
     get_tm_session,
     )
 
-from ..models import AccessToken
+from ..models import BankAuth
 from ..models import User
 
 
