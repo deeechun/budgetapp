@@ -1,13 +1,15 @@
 from pyramid.response import Response
 from pyramid.view import view_config
+from pyramid.httpexceptions import HTTPFound
 
 from sqlalchemy.exc import DBAPIError
 
 from ..utils.utils import auth_user_to_plaid
 from ..utils.utils import get_access_token_from_auth_response
-from ..models import MyModel
+from ..models import AccessToken
+from ..models import User
 
-
+# ............................................................................ #
 @view_config(route_name='home', renderer='../templates/mytemplate.jinja2')
 def my_view(request):
     try:
@@ -17,23 +19,59 @@ def my_view(request):
         return Response(db_err_msg, content_type='text/plain', status=500)
     return {'one': one, 'project': 'budgetapp'}
 
+
+# ............................................................................ #
 @view_config(route_name='login', renderer='../templates/logintemplate.jinja2',
 		request_method="GET")
 def login_view(request):
+	"""
+	View for the login page. Function called when route URL is matched. 
+	"""
+	# This 'form.submitted' will be in request parameters if the submit button
+	# is clicked. This then redirects to the same route and calls the
+	# verify_login_view
+	if 'form.submitted' in request.params:
+		next_url = request.route_url('verify_login')
+		return HTTPFound(next_url)
 	return {}
 
+
+# ............................................................................ #
+@view_config(route_name='login',request_method="POST")
+def verify_login_view(request):
+	username = request.params['username']
+	password = request.params['password']	
+	user = request.dbsession.query(User).filter_by(username=username).first()
+	if user != None and user.check_password(password):
+		# Checks to see if the password matches the stored password in db
+		next_url = request.route_url('home')
+		return HTTPFound(next_url)
+	else:
+		return {"""#######################################################"""}
+
+# ............................................................................ #
+@view_config(route_name='create_account',
+		renderer='../templates/createaccounttemplate.jinja2',
+		request_method="GET")
+def create_account_view(request):
+	return {}
+
+
+# ............................................................................ #
 @view_config(route_name='add_bank', renderer='../templates/addbanktemplate',
 		request_method="GET")
 def get_add_bank(request):
 	account_type = request_method.matchdict['account_type']
 
+
+# ............................................................................ #
 @view_config(route_name='add_bank', request_method="POST")
 def post_add_bank(request):
 	username = request.params['username']
 	password = request.params['password']
-	
 
 
+# ............................................................................ #
 db_err_msg = """\
 Pyramid is having a problem using your SQL database.  The problem
 might be caused by one of the following things:
