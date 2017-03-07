@@ -6,7 +6,7 @@ from sqlalchemy.exc import DBAPIError
 
 from ..utils.utils import auth_user_to_plaid
 from ..utils.utils import get_access_token_from_auth_response
-from ..models import AccessToken
+from ..models import BankAuth
 from ..models import User
 
 # ............................................................................ #
@@ -37,17 +37,21 @@ def login_view(request):
 
 
 # ............................................................................ #
-@view_config(route_name='login',request_method="POST")
+@view_config(route_name='login',renderer='../templates/logintemplate.jinja2',
+		request_method="POST")
 def verify_login_view(request):
 	username = request.params['username']
-	password = request.params['password']	
+	password = request.params['password']
 	user = request.dbsession.query(User).filter_by(username=username).first()
+	
+	# Check to see if username is present in db and password matches with one
+	# stored in db
 	if user != None and user.check_password(password):
 		# Checks to see if the password matches the stored password in db
 		next_url = request.route_url('home')
 		return HTTPFound(next_url)
 	else:
-		return {"""#######################################################"""}
+		return Response("""###############################################""")
 
 # ............................................................................ #
 @view_config(route_name='create_account',
@@ -60,13 +64,14 @@ def create_account_view(request):
 # ............................................................................ #
 @view_config(route_name='add_bank', renderer='../templates/addbanktemplate',
 		request_method="GET")
-def get_add_bank(request):
+def add_bank_view(request):
 	account_type = request_method.matchdict['account_type']
+
 
 
 # ............................................................................ #
 @view_config(route_name='add_bank', request_method="POST")
-def post_add_bank(request):
+def verify_add_bank_view(request):
 	username = request.params['username']
 	password = request.params['password']
 
