@@ -10,13 +10,15 @@ from .meta import Base
 
 class User(Base):
 
+	# Sets db table name
 	__tablename__ = 'users'
 
 	id = Column(Integer, primary_key = True)
 	username = Column(Text, nullable = False)
 	email = Column(Text, nullable = False)
 	_hashed_password = Column(Text)
-	banking = relationship("AccessToken", uselist=False, back_populates="user")
+	bank_auth_id = Column(Integer, ForeignKey('bank_auth.id'))
+	bank_auth = relationship("BankAuth", back_populates="user")
 
 	def __init__(self, password):
 		"""
@@ -64,13 +66,15 @@ class User(Base):
 		return password_matches
 
 # ............................................................................ #
-class AccessToken(Base):
+class BankAuth(Base):
 
-	__tablename__ = 'access_token'
+	# Sets db table name
+	__tablename__ = 'bank_auth'
 
-	user_id = Column(Integer, ForeignKey("users.id"))
-	user = relationship("User", back_populates="banking")
-	_access_token = Column(Text, primary_key = True, nullable = False)
+	id = Column(Integer, primary_key=True)
+	user = relationship("User", back_populates="bank_auth")
+	_access_token = Column(Text, nullable = False)
+	account_type = Column(Text, nullable = False)
 
 	def __init__(self, access_token):
 		self._access_token = access_token
