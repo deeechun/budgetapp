@@ -17,15 +17,19 @@ class User(Base):
 	username = Column(Text, nullable = False)
 	email = Column(Text, nullable = False)
 	_hashed_password = Column(Text)
-	bank_auth_id = Column(Integer, ForeignKey('bank_auth.id'))
+	bank_auth_id = Column(Integer, ForeignKey('bank_auth.id'),
+					nullable = False)
 	bank_auth = relationship("BankAuth", back_populates="user")
 
-	def __init__(self, password):
+	def __init__(self, password, username, email, bank_auth_id):
 		"""
 		Creates the '_hashed_password' parameter by calling on the method
 		'set_hashed_password' upon instance initialization
 		"""
-		self._hashed_password = set_hashed_password(password)
+		self._hashed_password = self.set_hashed_password(password)
+		self.username = username
+		self.email = email
+		self.bank_auth_id = bank_auth_id
 
 	def set_hashed_password(self, password):
 		"""
@@ -41,6 +45,7 @@ class User(Base):
 		hashed_password = bcrypt.hashpw(password_string.encode('utf8'),
 									bcrypt.gensalt())
 		self._hashed_password = hashed_password.decode('utf8')
+		return self._hashed_password
 
 	def check_password(self, password):
 		"""
@@ -72,12 +77,13 @@ class BankAuth(Base):
 	__tablename__ = 'bank_auth'
 
 	id = Column(Integer, primary_key=True)
-	user = relationship("User", back_populates="bank_auth")
+	user = relationship("User", uselist=False, back_populates="bank_auth")
 	_access_token = Column(Text, nullable = False)
 	account_type = Column(Text, nullable = False)
 
-	def __init__(self, access_token):
+	def __init__(self, access_token, account_type):
 		self._access_token = access_token
+		self.account_type = account_type
 
 	@property
 	def access_token(self):
