@@ -1,4 +1,4 @@
-Budgeting App!
+**Budgeting App!**
 
 This is a simple budgeting web app using bank credentials (chase, bank of america, wells fargo, citi, american express)
 
