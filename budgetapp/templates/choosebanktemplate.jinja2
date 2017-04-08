@@ -1,0 +1,25 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+<div class="btn-group" role="group" aria-label="Basic example">
+  <div class="container">
+  <a href={{request.route_url('add_bank', account_type='chase')}}>
+  	<button type="button" style="height:50px" class="btn btn-secondary">
+  		<img class="bank-image" src={{request.static_url('budgetapp:static/chase.png')}}> Chase</button></a>
+  <a href={{request.route_url('add_bank', account_type='citi')}}>
+  	<button type="button" class="btn btn-secondary">
+  		<img class="bank-image" src={{request.static_url('budgetapp:static/citi.png')}}>Citi</button></a>
+  <a href={{request.route_url('add_bank', account_type='wells')}}>
+  	<button type="button" class="btn btn-secondary">
+  		<img class="bank-image" src={{request.static_url('budgetapp:static/wells.png')}}>Wells Fargo</button></a>
+  <a href={{request.route_url('add_bank', account_type='amex')}}>
+  	<button type="button" class="btn btn-secondary">
+  		<img class="bank-image" src={{request.static_url('budgetapp:static/amex.png')}}>American Express</button></a>
+  <a href={{request.route_url('add_bank', account_type='bofa')}}>
+  	<button type="button" class="btn btn-secondary">
+  		<img class="bank-image" src={{request.static_url('budgetapp:static/bofa.png')}}>Bank of America</button></a>
+  </div>
+</div>
+
+{% endblock content %}

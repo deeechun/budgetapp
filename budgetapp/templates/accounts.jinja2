@@ -1,0 +1,41 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<h1><span class="font-semi-bold">{{username}}</span></h1>
+<div class = "container">
+<div class="row">
+<div class="bd-example" data-example-id="">
+    <div id="accordion" role="tablist" aria-multiselectable="false">
+     {% for entry in accounts_list %}
+      {% for account in entry['accounts'] %}
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" data-parent="#accordion" href="#{{account['mask']}}" aria-expanded="false" aria-controls="{{account['mask']}}">
+            {{account['name']}}   {{account['mask']}}:  ${{account['balances']['current']}}
+            </a>
+          </h5>
+        </div>
+          <div id="{{account['mask']}}" class="collapse" role="tabpanel">
+          <div class="card-block">
+            {% for transaction in transactions %}
+              {% for transaction in transaction['transactions'] %}
+                {% if account['account_id'] == transaction['account_id'] %}
+
+            <p> {{transaction['name']}}: ${{transaction['amount']}}</p>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+</div>
+</div>
+</div>
+
+
+{% endblock content %}

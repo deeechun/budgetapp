@@ -1,3 +1,15 @@
-<footer class="container text-center">
-  <p>Footer Text</p>
-</footer>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-22 col-xs-offset-1">
+            <p class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a data-toggle="modal" href="#tc-modal">Terms & Conditions</a>
+            </p>
+            <hr>
+            <p>skrus, Copyright &copy; 2017</p>
+        </div>
+    </div>
+</div>
+
+{% include 'tc-modal.jinja2' %}

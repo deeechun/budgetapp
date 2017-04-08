@@ -1,35 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="{{request.locale_name}}">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge; text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pyramid web application">
+    <meta name="author" content="Pylons Project">
+    <link rel="shortcut icon" href="{{request.static_url('budgetapp:static/pyramid-16x16.png')}}">
+
     <title>BudgetUp!</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href={{request.static_url('budgetapp:static/theme')}}>
-  </head>
-<body>
 
-{% include 'navbar.jinja2' %}
+    <!-- jQuery-UI CSS -->
+    <link href="{{request.static_url('budgetapp:static/styles/jquery-ui.min.css')}}" rel="stylesheet" />
+    <!-- Bootstrap core CSS -->
+    <link href="{{request.static_url('budgetapp:static/styles/bootstrap.min.css')}}" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="{{request.static_url('budgetapp:static/styles/theme.css')}}" rel="stylesheet" />
+    <link href="{{request.static_url('budgetapp:static/styles/styles.css')}}" rel="stylesheet" />
 
-<div class="container">    
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body data-spy="scroll" data-target=".navbar-custom">
+    <header id="header">
+        {% include 'navbar.jinja2' %}
+    </header>
+    <div id="content">
+        <div class="container">
+            {% if error %}
+                <div class="alert alert-warning">
+                    <p>{{ error }}</p>
+                </div>
+            {% endif %}
+        </div>
+        <!-- content templates -->
+        {% block content %}
+        {% endblock %}
     </div>
-    <div class="col-sm-8 text-left"> 
-      {% block content %}
+    <footer id="footer">
+        {% include 'footer.jinja2' %}
+    </footer>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery & jQuery-UI JavaScript -->
+    <script src="{{request.static_url('budgetapp:static/js/jquery-3.1.1.min.js')}}"></script>
+    <script src="{{request.static_url('budgetapp:static/js/jquery-ui.min.js')}}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{request.static_url('budgetapp:static/js/bootstrap.min.js')}}"></script>
+    <!-- custom jQuery script -->
+    <script>
+        function collapseNavbar(){
+            if($(".navbar").offset().top>50){
+                $(".navbar-fixed-top").addClass("navbar-custom");
+            }else{
+                $(".navbar-fixed-top").removeClass("navbar-custom");
+            }
+        }
+        $(window).scroll(collapseNavbar);
+        $(document).ready(collapseNavbar);
+    </script>
 
-      {% endblock content %}
-    </div>
 
-      {% include 'rightsidebar.jinja2' %}
-    </div>
-  </div>
-</div>
-  {% include 'footer.jinja2' %}
+    <!-- load page-specific scripts -->
+    {% block script %}
+    {% endblock %}
 </body>
 </html>
