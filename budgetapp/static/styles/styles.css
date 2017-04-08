@@ -1,0 +1,407 @@
+/* home.jinja2 template */
+/**************************************************/
+#top{
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url(../bg.jpg) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+#top .text-vertical-center {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+#top .text-vertical-center h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 5em;
+    font-weight: bold;
+}
+#subscribe-email{
+    padding: 15px;
+    background-color: #0069CD;
+}
+#subscribe-email h2{
+    color: #FFFFFF;
+    font-size: 2em;
+    font-weight: bold;
+}
+#about{
+    padding: 15px;
+    background-color: #fafa46;
+}
+#about h2{
+    font-size: 2em;
+    font-weight: bold;
+}
+#services{
+    padding: 15px;
+    background-color: #ff3589;
+}
+#services h2{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* buttons btn
+/**************************************************/
+
+
+/* form group
+/**************************************************/
+.form-group .form-control-feedback{
+    top: 5px;
+}
+
+
+/* auth pages CSS
+/**************************************************/
+.user-guide{
+    margin-top: 12px;
+    text-align: center;
+}
+.user-guide a, p{
+    font-size: 12px;
+}
+
+/* login & register */
+.auth-title{
+    text-align: center;
+    font-size: 3.5em;
+    font-weight: bold;
+}
+
+
+/* filters CSS
+/**************************************************/
+/*.filter-box{
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #0066CD;
+    box-shadow: 0 3px 6px -1px rgba(0,0,0,0.3);
+}*/
+.filter-section{
+
+}
+.filter-box{
+    background-color: #EEEEEE;
+    border: 1px solid #dcdcdc;
+    color: #6c6c6c;
+    margin: 6px;
+    padding: 3px;
+}
+.filter-group{
+    float: left;
+    margin: 5px;
+}
+.filter-group-mobile{
+    margin: 5px;
+}
+.filter-button{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.dropdown-toggle:hover{
+    text-decoration: none;
+}
+.dropdown-menu{
+    width: 300px;
+    padding: 6px;
+}
+.price-form-group{
+    margin: 6px;
+}
+.input-group-addon{
+    padding: 2px 8px;
+}
+.ui-slider {
+    height: 12px;
+    margin: 12px;
+}
+.ui-slider .ui-slider-handle {
+    height: 18px;
+    width: 18px;
+}
+.ui-slider .ui-slider-range{
+    background-color: #D2E6F6;
+}
+
+
+/* posts CSS
+/**************************************************/
+.cards-section {
+
+}
+.card {
+    display: block;
+    position: relative;
+    margin: 6px;
+    border: 0;
+    transition: box-shadow .25s;
+    overflow: hidden;
+}
+.card:hover {
+    box-shadow: 0 1px 8px 0px rgba(0,0,0,0.4);
+}
+.card-add-new {
+    border: 1px solid #dcdcdc;
+    background-color: #f8f8f8;
+    top: 35%;
+    color: #6c6c6c;
+    text-align: center;
+}
+.card-category{
+
+}
+.card-viewed {
+    position:absolute;
+    right: 6px;
+    top: 6px;
+    background-color: #444444;
+    border-radius: 3px;
+    opacity: 0.8;
+    padding: 1px 3px;
+    color: #FFFFFF;
+    font-family: arial;
+    font-size: 11px;
+}
+.card-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+}
+.card-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: cover;
+    transition: all .25s ease;
+}
+.card-content{
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    background: -webkit-linear-gradient(to top, rgba(69,69,69,1), rgba(69,69,69,0));
+    background: -o-linear-gradient(to top, rgba(69,69,69,1), rgba(69,69,69,0));
+    background: -moz-linear-gradient(to top, rgba(69,69,69,1), rgba(69,69,69,0));
+    background: linear-gradient(to top, rgba(69,69,69,1), rgba(69,69,69,0));
+    padding: 5px;
+    color: #FFFFFF;
+}
+.card-subject{
+    margin: 12px 0 6px 0;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+.card-subject:hover{
+    text-decoration: none;
+    color: #d4d4d4;
+}
+.card-desc {
+    margin: 4px 0;
+    font-size: 15px;
+    font-weight: bold;
+}
+.card-desc-price {
+    font-size: 20px;
+}
+.card-desc-2 {
+    font-size: 12px;
+    font-weight: normal;
+}
+.card-read-more {
+    border-top: 1px solid #dedede;
+}
+.card-read-more-text {
+    margin: 3px 0 0 0;
+    font-size: 11px;
+}
+/*
+.map-view{
+    position: absolute;
+    top: 100px;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+#map{
+    height: 100%;
+    width: 100%;
+    background-color:grey;
+}
+.posts-box{
+    position: absolute;
+    top: 100px;
+    left: 0;
+    bottom:0;
+    z-index: 100;
+    /*box-shadow: 3px 0 6px rgba(0,0,0,.3);
+    overflow: auto;
+    padding: 3px;
+}*/
+
+/* view/modal CSS
+/**************************************************/
+.modal{
+    z-index: 9999;
+}
+.modal-open[style] {
+    padding-right: 0px !important;
+}
+.modal-header{
+    border:0;
+}
+.modal-title{
+    font-size: 21px;
+}
+.modal-content{
+    border-radius: 0;
+    height: auto;
+}
+.modal-body{
+    margin: 0;
+    padding: 0;
+}
+/*.view-subject{
+    float:left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: #444444;
+}*/
+.view-options{
+    float: right;
+    margin: 0;
+    font-weight: bold;
+}
+.view-options a{
+    margin: 0 0 0 12px;
+    color: #757575;
+}
+.view-options a:hover{
+    color: #004081;
+    text-decoration: none;
+}
+.view-box{
+    padding: 12px;
+    border-top: 1px solid #dedede;
+}
+.view-box-price{
+    margin: 0 0 9px 0;
+    color: #444444;
+    font-size: 20px;
+    font-weight: bold;
+}
+.view-box-title{
+    margin: 0 0 9px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0066CD;
+}
+.view-box-title2{
+    margin: 0px 0px 3px 0px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.view-box-corner{
+    float: right;
+    margin: 3px 0 0 0;
+    font-size: 13px;
+    color: #757575;
+}
+.view-box-subtitle{
+    width: 30%;
+    padding: 3px 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444444;
+}
+.view-box-stat{
+    padding: 3px 0;
+    font-size: 14px;
+    font-weight: normal;
+    color: #444444;
+}
+.view-body{
+    padding: 6px;
+}
+.view-adspace{
+    margin: 6px;
+    border:1px solid red;
+}
+
+/* edit page CSS
+/**************************************************/
+.edit-section{
+    margin: 6px;
+}
+.edit-title{
+    margin: 12px 6px 6px 6px;
+    color: #0066CD;
+    font-size: 20px;
+}
+.edit-form-group{
+    margin: 6px;
+}
+.edit-body {
+    resize: vertical;
+}
+
+@media only screen and (max-width : 991px) {
+/* only size 'sm' and below */
+    .modal-dialog {
+        width: 97%;
+        margin: 30px auto;
+    }
+}
+
+@media only screen and (max-width : 767px) {
+/* only size 'xs' and below */
+    .filter-box{
+        margin: 3px;
+    }
+    .card{
+        margin: 3px;
+    }
+    .card-viewed {
+        font-size: 10px;
+    }
+    .card-content{
+        padding: 3px;
+    }
+    .card-subject {
+        font-size: 13px;
+    }
+    .card-desc {
+        font-size: 13px;
+    }
+    .card-desc-price {
+        font-size: 16px;
+    }
+    .card-desc-2 {
+        font-size: 11px;
+    }
+    .card-read-more-text {
+        font-size: 10px;
+    }
+    .filter-modal-dialog {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+}
+
+/*"http://www.fostrap.com/"*/

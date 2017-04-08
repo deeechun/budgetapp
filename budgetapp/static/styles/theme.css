@@ -1,0 +1,96 @@
+* site-wide CSS */
+/**************************************************/
+body{
+    font-family: arial;
+}
+hr{
+    margin: 6px 0px 6px 0px;
+    border-top: 1px solid #dcdcdc;
+}
+.container{
+    max-width: 940px;
+}
+.ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.form-required{
+    margin-top: 1px;
+    color: red;
+    font-size: 12px;
+}
+
+/* header navbar CSS */
+/**************************************************/
+#header .navbar{
+    z-index: 3;
+    background-color: #ffffff;
+    border-radius: 0px;
+    border: 0;
+    box-shadow: 0 3px 3px -1px rgba(0,0,0,0.3);
+    background-color: rgba(255, 255, 255, 0.7);
+}
+#header .navbar-custom{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+#header .navbar-header{
+    margin: 0 12px;
+}
+#header .navbar-collapse li a{
+    color: #6c6c6c;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+#header .navbar-collapse li a:hover{
+    background-color: #FFFFFF;
+    color: #0066CD;
+}
+#header .nav-active a{
+    color: #0066CD;
+}
+#header .navbar-toggle .icon-bar {
+    margin-right: 3px;
+    height: 2px;
+    width: 21px;
+    border-radius: 3px;
+    background-color: #6c6c6c;
+}
+
+/* content CSS */
+/**************************************************/
+#content{
+    margin-top: 50px;
+    padding-top: 9px;
+}
+#content .alert{
+    margin: 6px;
+}
+
+/* footer CSS
+/**************************************************/
+#footer{
+    border-top: 1px solid #dcdcdc;
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #EEEEEE;
+}
+#footer p{
+    text-align: center;
+    margin: 9px;
+    color: #6c6c6c;
+    font-size: 11px;
+}
+#footer .footer-links a{
+    margin: 3px;
+    text-decoration: none;
+    color: #6c6c6c;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#tc-modal p{
+    text-align: left;
+    margin: 15px 6px;
+    font-size: 18px;
+}
