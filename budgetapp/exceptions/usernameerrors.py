@@ -9,3 +9,13 @@ class UsernameInvalidError(Error):
 
     def __str__(self):
         return str(self.message)
+
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #
+class UsernameExistsError(Error):
+
+    def __init__(self):
+        self.message = 'This username already exists'
+
+    def __str__(self):
+        return str(self.message)
