@@ -129,38 +129,38 @@ def verify_register(request):
 
 	# Grab request parameters from the form and set them to respective
 	# namespaces
-    username = request.params['username']
-    email = request.params['email']
-    password = request.params['password']
-    confirm_password = request.params['confirm_password']
+	username = request.params['username']
+	email = request.params['email']
+	password = request.params['password']
+	confirm_password = request.params['confirm_password']
 
-    # Create a RegisterValidator instance. The instance contains methods to
-    # validate user credentials before adding them to users table. We pass in
-    # the form parameters and the dbsession tied to the request into the
-    # instance to validate internally.
-    rv = RegisterValidator(username=username, email=email, password=password,
-    				confirm_password=confirm_password,
-    				dbsession=request.dbsession)
+	# Create a RegisterValidator instance. The instance contains methods to
+	# validate user credentials before adding them to users table. We pass in
+	# the form parameters and the dbsession tied to the request into the
+	# instance to validate internally.
+	rv = RegisterValidator(username=username, email=email, password=password,
+					confirm_password=confirm_password,
+					dbsession=request.dbsession)
 
-    try:
-    	# Checks to see if the username already exists in the table and throws
-    	# an error if it does
-    	username_exists = rv.check_username_exists()
-    except UsernameInvalidError:
-    	# This error is raised if the username exists in the users table
-    	return {'error':'That username exists. Please choose a different one!'}
+	try:
+		# Checks to see if the username already exists in the table and throws
+		# an error if it does
+		username_exists = rv.check_username_exists()
+	except UsernameInvalidError:
+		# This error is raised if the username exists in the users table
+		return {'error':'That username exists. Please choose a different one!'}
 
-    # Call the User class method to create a user object with the parameters if
-    # the registration checks pass
-    user = User.create_user(username=username, email=email, password=password)
-    request.dbsession.add(user)
+	# Call the User class method to create a user object with the parameters if
+	# the registration checks pass
+	user = User.create_user(username=username, email=email, password=password)
+	request.dbsession.add(user)
 
-    # Sets the URL to the '/login' route
-    next_url = request.route_url('login')
-    # Sets response to redirect to the '/login' route
-    response = HTTPFound(next_url)
-#TODO: Finish register route
-    return response
+	# Sets the URL to the '/login' route
+	next_url = request.route_url('login')
+	# Sets response to redirect to the '/login' route
+	response = HTTPFound(next_url)
+	#TODO: Finish register route
+	return response
 
 
 # ........................................................................... #
