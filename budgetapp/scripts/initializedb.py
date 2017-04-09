@@ -40,28 +40,4 @@ def main(argv=sys.argv):
 
     session_factory = get_session_factory(engine)
 
-    with transaction.manager:
-        dbsession = get_tm_session(session_factory, transaction.manager)
 
-
-        # Create sample entry and add to access_token table
-        access_token = "463505f3cf167e96c6ca808f1922a234f9de0898a4c82301cad9"+\
-        "ccd13f18f7c0440b7a90a6834cba4296acf758913dd5228f05f546b93ed44f0df3"+\
-        "a4dbf703e8cee266efe781e34f92c33d353e4bd530"
-        account_type = "chase"
-        bank_auth = BankAuth(access_token=access_token,
-                        account_type=account_type)
-
-        # Create sample entry and add to users table
-        username = "admin"
-        email = "dechun92@gmail.com"
-        password = "password"
-        bank_auth_id = bank_auth.id
-        user = User(username=username, email=email, password=password,
-                bank_auth_id=bank_auth_id)
-
-        user.bank_auth = bank_auth
-        bank_auth.user = user
-
-        dbsession.add_all([bank_auth,user])
-        
