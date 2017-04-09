@@ -26,7 +26,9 @@ var handler = Plaid.create({
     // The metadata object contains info about the institution the
     // user selected and the account ID, if `selectAccount` is enabled.
     console.log(public_token)
+    // Send a post request to the set_access_token path
     $.post('/set_access_token', {
+      // Add the public_token to the request parameters
       public_token: public_token,
     })
   }
