@@ -64,8 +64,8 @@ def accounts(request):
 def add_bank(request):
 	"""
 	View called when a GET request is called to the add_bank route. Renders the
-	home template with no variables passed into it. This view is only called if
-	the user is authenticated
+	home template with no variables passed into it. The user must be
+	authenticated in order to access this view
 
 	:param request: a GET request from an authenticated user to the add_bank
 	route
@@ -73,7 +73,8 @@ def add_bank(request):
 
 	:return: dict
 	"""
-	return {}
+	plaid_public_key = request.registry['plaid.public_key']
+	return {'plaid_public_key':plaid_public_key}
 
 
 # ........................................................................... #

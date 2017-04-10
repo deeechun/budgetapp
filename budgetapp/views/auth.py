@@ -51,8 +51,22 @@ def verify_login_view(request):
 
 
 # ............................................................................ #
-@view_config(route_name='logout')
+@view_config(route_name='logout', request_method="POST")
 def logout_view(request):
+	"""
+	View called when POST request is called to the logout route. This logs a
+	user out by sending a Set-Cookie header with a blank sequence, overwriting
+	any previous cookies set. If the request sent is not authenticated, the
+	user will stil be logged out and redirected to the login route
+
+	:param request: the POST request sent to the server to unauthenticate a
+	user
+	:type: pyramid.request.Request
+
+	:return HTTPFound: redirects to the login route after unauthenticating the
+	user
+	:rtype: pyramid.httpexceptions.HTTPFound
+	"""
 	headers = forget(request)
 	next_url = request.route_url('login')
 	return HTTPFound(location=next_url, headers=headers)
