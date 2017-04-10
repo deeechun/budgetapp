@@ -99,3 +99,6 @@ class RegisterValidator():
         else:
             passwords_match = False
         return passwords_match
+
+
+    # ....................................................................... #
