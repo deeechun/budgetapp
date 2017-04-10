@@ -5,6 +5,7 @@ from pyramid.security import Everyone
 
 from .models import User
 
+#TODO: DOCUMENTATION
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 class MyAuthenticationPolicy(AuthTktAuthenticationPolicy):
