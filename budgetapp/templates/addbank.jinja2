@@ -16,7 +16,7 @@ var handler = Plaid.create({
   apiVersion: 'v2',
   clientName: 'Plaid Walkthrough Demo',
   env: 'development',
-  key: '9f511938e841a3679f50330ab9a00b', // Replace with your public_key to test with live credentials
+  key: {{plaid_public_key}}, // Replace with your public_key to test with live credentials
   product:'auth',
   //webhook: '[WEBHOOK_URL]', // Optional – use webhooks to get transaction and error updates
   selectAccount: false, // Optional – trigger the Select Account
@@ -25,7 +25,6 @@ var handler = Plaid.create({
     // Send the public_token to your app server.
     // The metadata object contains info about the institution the
     // user selected and the account ID, if `selectAccount` is enabled.
-    console.log(public_token)
     // Send a post request to the set_access_token path
     $.post('/set_access_token', {
       // Add the public_token to the request parameters
